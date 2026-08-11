@@ -24,7 +24,7 @@ const productImages = [
     { filename: "WhatsApp Image 2026-07-08 at 3.41.27 PM.jpeg", name: "Special Pregnancy Pillow" },
     { filename: "WhatsApp Image 2026-07-08 at 3.41.28 PM (2).jpeg", name: "Modern Baby Chair" },
     { filename: "WhatsApp Image 2026-07-08 at 3.41.34 PM (1).jpeg", name: "Comfort Baby Bed" },
-    { filename: "WhatsApp Image 2026-07-08 at 3.41.23 PM.jpeg", name: "Comfort Baby Toy" },
+    { filename: "WhatsApp Image 2026-07-08 at 3.41.23 PM.jpeg", name: "Comfort Baby King Chair" },
 ];
 
 // ============================================================================
