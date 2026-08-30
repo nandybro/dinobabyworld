@@ -6,7 +6,7 @@
 // CONFIGURATION
 // ============================================================================
 // Your WhatsApp Number (include country code, without '+' or spaces)
-const WHATSAPP_NUMBER = "919659967486";
+const WHATSAPP_NUMBER = "919500368149"; // dino_babyworld
 
 // ============================================================================
 // PRODUCT LIST
