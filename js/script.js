@@ -26,17 +26,17 @@ const productImages = [
     },
     {
         images: ["A225EE98-D47A-4846-BB91-56AE5ADD1EE4.jpeg", "6A775D20-1AA6-4280-B30A-E531553621E8.jpeg", "0DED6DCC-7DD2-4E43-A0EA-9E544E2613C7.jpeg",],
-        name: "Classic Baby Chair",
-        price: 1999,
-        discountedPrice: 1499,
+        name: "Hand Gloves with Rib",
+        price: 80,
+        discountedPrice: 60,
         features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
     },
     {
         images: [
             "40695E18-8F54-429D-9C51-CBFAD5FDCA0F.jpeg", "FF3BA7B7-65A4-4BD9-85C6-51416365256D.jpeg"],
-        name: "Classic Baby Chair",
-        price: 1999,
-        discountedPrice: 1499,
+        name: "Baby Hand Gloves",
+        price: 60,
+        discountedPrice: 30,
         features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
     },
     // {
@@ -98,9 +98,9 @@ const productImages = [
     },
     {
         images: ["2D00EC8A-A9DD-4265-8BE2-953EC824A99F.jpeg", "2CE56998-5479-4D43-9CD0-EBCF3C8961AB.jpeg"],
-        name: "Cute Toddler Outfit",
-        price: 1999,
-        discountedPrice: 1499,
+        name: "Soft Rattle",
+        price: 200,
+        discountedPrice: 100,
         features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
     },
     {
@@ -221,9 +221,9 @@ const productImages = [
     },
     {
         images: ["1E03428A-854E-47EE-980F-C4944DB15016.jpeg", "C68A7BD5-40F4-4F46-81DD-EFC883C27551.jpeg"],
-        name: "Soothing Pacifier Set",
-        price: 1999,
-        discountedPrice: 1499,
+        name: "SS Medicine Feeder",
+        price: 80,
+        discountedPrice: 40,
         features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
     },
     {
@@ -362,6 +362,307 @@ const productImages = [
         discountedPrice: 820,
         features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
     },
+    {
+        images: ["F03A14CE-251A-4A41-9E47-3C11D2FED553_web.jpeg", "E8D8CC5C-823D-434E-A734-6B1D8DFAB4D8_web.jpeg", "09766CB1-6B75-4216-8C1E-C4E5E806C2FF_web.jpeg", "0C531F47-2B3B-407D-858C-E2FE381762B7_web.jpeg", "EA6E75D1-E9F3-46EA-B2BC-B0DC7EF49D93_web.jpeg", "76181ADA-5113-4880-B402-8F42E275B265_web.jpeg", "7B87759C-1706-4128-85C6-0292838C9B84_web.jpeg", "8759621F-2408-4681-87F0-85B992852310_web.jpeg", "80796D26-67A9-4BD9-A374-7F195B163CD9_web.jpeg", "FBC70C43-AD43-4AF2-A2C8-BF76DD56ABD4_web.jpeg", "B6BAD610-41E6-4A1C-AE25-AADA87363045_web.jpeg", "E4D901AA-2E11-45C1-94AE-71AA3D6A2336_web.jpeg", "31577093-8F06-4382-BEAC-9EA20DB365D9_web.jpeg"],
+        name: "New Product 1",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["06BB9E96-962D-4968-A6B3-6E9FB393A590_web.jpeg"],
+        name: "New Product 2",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["69BA2381-3062-4024-B999-77BB825D78A5_web.jpeg", "9EE829F4-803A-4FC1-A187-BB1F494DF134_web.jpeg", "BBC3FFBE-98FA-4E70-A672-507140FDD54A_web.jpeg", "D8608E52-2EEF-40E9-BAE4-C68ABE45C1D1_web.jpeg", "31E0D195-3585-4D7C-B592-2BB4D12D8A8B_web.jpeg", "64555B51-B5DF-4D33-B531-8D06F1CF58B3_web.jpeg", "51B0B824-5903-4B79-9B89-F6C8EC46010B_web.jpeg", "F78E01CD-1DE8-460C-86E2-CC041E0F6BBE_web.jpeg", "86D4BC86-B8FA-406A-B9CC-CD5861ECAF06_web.jpeg", "E3044DFF-A369-4767-8BDB-65C50FEF3D44_web.jpeg", "E4614777-D87F-4FEC-B0B8-CC480E56FB19_web.jpeg"],
+        name: "New Product 3",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["236BB3E7-25C9-4243-AB37-6B7F014BAD7E_web.jpeg", "84039818-0D3F-467E-9A9A-D200AB9DACAA_web.jpeg", "9C0EBEDD-21CF-4E56-9883-37131AFD41C0_web.jpeg", "1902A331-E449-4768-AAEA-79B46A30FDF3_web.jpeg", "35594058-4BA6-483E-99F5-E8240B95CD3B_web.jpeg", "B6471652-E3D1-40D2-9F2E-BF624DADCE71_web.jpeg", "EEFE0860-90A5-4E0B-861A-2806992BC5FE_web.jpeg", "AF0FD796-C71A-4A95-B231-8AF5EB781C09_web.jpeg", "B4294463-53A8-456A-A7FE-C17E6614A704_web.jpeg", "A7BB8B15-4F87-46CB-8332-B5C5BB938C40_web.jpeg", "AF2969D7-1287-47EC-ACD8-AF41CEEB0952_web.jpeg", "403FC6DC-03BB-4F34-AE10-5BF6387C65A4_web.jpeg", "02EF164B-F8B2-4910-B304-538261C94C7B_web.jpeg", "B0FD92A1-8AF6-40BD-97B3-A37C1C75F6A7_web.jpeg", "02DC8D77-6DFD-43DD-8F30-7BA508715BBD_web.jpeg"],
+        name: "New Product 4",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["05E12068-6FAE-4E55-A901-187068A0E79A_web.jpeg", "1AB9549A-6C1E-4662-A94F-7C92326001FF_web.jpeg", "10D62BC5-6990-4E39-B189-7755DB85C9D4_web.jpeg", "29A44CC6-8034-4BF2-BA1E-A2EFE3A0F20A_web.jpeg", "A61D7157-5395-48EE-9F4D-3A82538F2855_web.jpeg", "D0579576-A43E-4B18-8C62-817E9044F3EE_web.jpeg", "AD9DE50F-98B2-4B2F-8A44-D404B21E62DE_web.jpeg", "D324E3F6-6006-413A-BEC0-DD583FC91ED3_web.jpeg", "36E09CE0-CF91-4539-A81A-F47B9B32B013_web.jpeg"],
+        name: "New Product 5",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["AA5694D8-07CC-4665-9BC2-73D0E03EC623_web.jpeg", "32370F28-9F7F-4108-A17C-5F21773244AA_web.jpeg", "979CDB8B-70D9-414D-9662-8E2DE3B57E10_web.jpeg", "8D54918E-6742-4B64-9D08-17F48AE4A894_web.jpeg", "47F5CE35-AA48-4AA6-BC42-2C940EF5D5BE_web.jpeg", "784A8A50-EF12-4BFA-A595-E8DD022F60B7_web.jpeg", "C3039E6C-77EA-43AD-AF53-FD019E350109_web.jpeg", "31992E67-D0EA-430A-914C-725F6B93D60B_web.jpeg", "71999B8A-EB8C-458D-B40D-34CFA669F251_web.jpeg", "C6163BDC-67E7-4520-9CDF-B0D56297960A_web.jpeg"],
+        name: "New Product 6",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["0558B0EF-A327-4640-A0F5-ED65CCE949E6_web.jpeg", "8FC9EE9B-E2B9-46F6-B5E7-CE93ABB3C118_web.jpeg", "6E8237A4-24CE-45E7-B874-B5F2D3DAE697_web.jpeg", "AB4CF1B7-F69D-4A96-B18D-F68E04B5C7B4_web.jpeg"],
+        name: "New Product 7",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["FF43E5C0-067C-4830-AADF-0DCECF5A7729_web.jpeg", "0109A162-08B0-40C2-8F5A-3F87C116E38F_web.jpeg", "2BAE210A-07F5-4B0F-8845-D95FB9A1F0B1_web.jpeg", "7263CE53-72AB-41B2-9487-637A251801A9_web.jpeg", "728F2B8C-1040-4A5B-8041-7DEFB4D5196C_web.jpeg", "0F01A77F-BFB3-4F3C-AB76-803D697E435E_web.jpeg", "93C12933-94BC-469A-9AC9-F4A24C3FEA13_web.jpeg", "B845485F-83F4-4154-BB79-0E4E79098783_web.jpeg", "EE7F03D7-10F9-4DCA-A22C-4FF3482CB19E_web.jpeg"],
+        name: "New Product 8",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["4AE094D8-54C6-49A3-A6E5-5DDF8C319F6B_web.jpeg", "0DDC8D37-2E11-43A1-9748-4F4F92432AF0_web.jpeg", "81E04E5E-BCB8-4B56-AD9B-AB487F10E789_web.jpeg", "B4E1A3A5-9A69-4D61-8362-C6B4E12D80CC_web.jpeg", "6265F634-164A-49E7-BAEA-A784ECE7E28E_web.jpeg", "9734800F-C3F6-4E9F-A112-732DBDB89748_web.jpeg", "CE63420A-D3EF-49DB-A1CC-16CF9E9A7786_web.jpeg"],
+        name: "New Product 9",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["77AB189C-D80C-429C-AF48-7A6A4E195B9D_web.jpeg", "CB6F3536-0D47-407D-BBCC-35415D561B83_web.jpeg", "D8A51001-D711-499A-A0D4-DF823A4EC3EA_web.jpeg", "33443D9D-36C0-4321-98DE-F64BE27F3A81_web.jpeg", "1731380F-8C31-4EC1-9888-2090DE85B432_web.jpeg", "E99CA40F-96FB-403E-99BA-57C6CAC01E1B_web.jpeg", "F4E7F899-70CB-403C-A4FC-EB4B48267901_web.jpeg", "5C4CABF6-7FD2-4D5F-ADA2-6EC2503E43C9_web.jpeg", "EC8DA665-CD92-43C5-8E7E-92AC4C70EBA0_web.jpeg", "890116E5-8A43-4654-A79A-3F9249069D80_web.jpeg"],
+        name: "New Product 10",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["A565AF91-7949-4BF8-A557-B41602D9717D_web.jpeg", "C6C4B2AA-9541-44B1-934C-367C82453B7D_web.jpeg", "4963790F-B89E-4103-8D97-5FFEF2CCE2CE_web.jpeg", "07643221-5ED0-4A3E-AA10-96467F1D15A1_web.jpeg", "0E92F5C7-FEB7-43CE-B42D-F43B9F489126_web.jpeg", "92AA746B-7088-4517-A83B-CC8EF5040271_web.jpeg", "B6A0A95E-2CD3-4C07-AEDA-E6B4C7562DEC_web.jpeg", "0714D2EE-DA81-437E-BACE-9C91BBDD716F_web.jpeg", "5C86540F-C99D-43E9-B5BB-577632C77C75_web.jpeg", "99E67A8E-C141-481E-B2B8-B199B3DBA011_web.jpeg", "A09B4C06-A425-4103-A083-EE6F130BA0D3_web.jpeg"],
+        name: "New Product 11",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["0BAF1552-29B9-41C5-96B0-B0D8C25884E4_web.jpeg", "AB6B6D78-16BC-4D7B-A21F-5F2AC04EE82B_web.jpeg", "E7645015-1A91-4394-9525-02F3F2793D6A_web.jpeg", "FB1A7AAD-8BFA-4B67-BFE4-BC7EBCD1CBAE_web.jpeg", "6EEE3FCA-6A78-48B1-9FC1-3F28502691E7_web.jpeg", "0567FC24-CBC8-4594-82E0-FABF4B465AAF_web.jpeg", "EB27A626-52E8-41F7-B657-B56F9512DAAD_web.jpeg", "8116BB2C-CF04-4E75-9F6E-24E565C7216B_web.jpeg"],
+        name: "New Product 12",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["D470E851-F5EB-4CDD-B4EC-8688C33BABC5_web.jpeg", "64E77BEE-7A48-4327-8191-8072301D799F_web.jpeg", "F2F28643-4641-4DD9-9E47-E274A9360C99_web.jpeg", "C91793F9-CE56-47F3-A9A6-9592EF4BD289_web.jpeg", "96800E94-0239-4413-B4C0-88EFA0DB79FA_web.jpeg", "F005D345-595A-488F-BDED-C145859BD070_web.jpeg", "F1A7972F-E5C5-449E-B041-43F43FE9145B_web.jpeg", "CDD68E38-F61D-420E-B5F0-912107B10049_web.jpeg", "F858F45C-FC31-4058-B180-53D72DAC9A3D_web.jpeg", "12F835A4-CA3E-492B-B6D8-E66C631848A9_web.jpeg", "14B65924-4C7A-4C91-81B0-CEA79022F6FE_web.jpeg", "4E60F0CE-721A-4DC2-83B2-0E6347B17591_web.jpeg"],
+        name: "New Product 13",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["B46B0387-7C54-49B0-BE32-502EEEC2B554_web.jpeg"],
+        name: "New Product 14",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["B03DF6C5-6EE0-46EE-A231-3565CD6C50D6_web.jpeg", "F4B3BB9D-D934-40FD-8374-36B0B7420C1A_web.jpeg", "F5C0B8A7-730F-46FD-892D-1EC1345A42BA_web.jpeg", "32EA896C-EBED-49F0-A55C-758B88D44E59_web.jpeg", "1CB47E1D-D527-4E64-9FC4-AC9107752FEA_web.jpeg", "C950FFB3-5A8E-468D-B4AF-9FD75AAEB56E_web.jpeg", "7BF25AB8-D208-47B7-9139-70830525BB1B_web.jpeg", "C37D797A-3436-45B9-BB97-99AEF8E644D4_web.jpeg", "259FC1C3-7023-4B94-93F3-0285A4127253_web.jpeg", "3DD7B4F8-0DAA-4471-B8A3-B048BFFD0EA6_web.jpeg", "96AD5651-CFC8-4897-B449-622DAB1F6854_web.jpeg"],
+        name: "New Product 15",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["11BFD2B3-7521-4461-977D-42A07C623022_web.jpeg", "23C71A8F-E5B8-4BA0-8DE7-37753661CCEA_web.jpeg", "5F8DE1ED-75E2-43EB-ADD0-10ADE1CFE301_web.jpeg", "78F1C376-3C7C-479E-B1C2-A5FFDA4DC586_web.jpeg", "D648DE94-0794-4902-A790-7240F51D3145_web.jpeg", "5D9D8F3D-DBFB-4940-8E6B-78E3EFF303C3_web.jpeg", "8B578451-BEEF-4E7E-811A-A1F6E8457EF0_web.jpeg", "5EFDDED1-2BEF-4322-A21A-B51EF991A90A_web.jpeg", "6564F5B7-F345-464C-809E-7A79238FA6AE_web.jpeg", "136BE525-8E67-4E92-A910-750B9B3D262E_web.jpeg", "591CBD18-668F-44D8-8439-DC7007E0DBCB_web.jpeg", "875C5BE8-8D36-4CCA-85B9-5704509B9EAE_web.jpeg"],
+        name: "New Product 16",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["E976555B-25B5-477E-8FE3-34C61FB7A4C0_web.jpeg", "9E484D35-6A20-41DF-9C33-0B5A18678DF5_web.jpeg", "E03E20B0-B251-4282-943C-9C86DDB05166_web.jpeg", "EF44B381-21FA-4E07-8132-578C47B0A963_web.jpeg", "1E14A1B8-6DDE-4435-9E33-6BF28E73F3B9_web.jpeg", "D6990580-B250-4321-A687-1687E19D4BC4_web.jpeg", "9BA988CE-87FC-430E-B2E7-E77F93853431_web.jpeg", "AFAC5693-768F-4EEA-A9C5-383D133F2FC1_web.jpeg"],
+        name: "New Product 17",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["7DC66721-D018-422B-84A4-965A9F2F5217_web.jpeg", "9FB73633-CA61-4B94-8292-5F1DD9B0B7C2_web.jpeg", "7D22EB17-EA9B-4320-9346-D440D83E5C87_web.jpeg", "F9B57A71-9943-4702-B1DA-DFDB843C9DBE_web.jpeg", "D2697158-98D7-46B4-9422-C1B7C78AB284_web.jpeg", "D6705D74-1EDF-4036-B2B7-595181651645_web.jpeg"],
+        name: "New Product 18",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["26E9C664-29A2-4DC3-A230-FB7293E7409F_web.jpeg", "83BA4A27-983F-440A-92BA-6A8FEE9702D7_web.jpeg", "96346E95-904F-4385-961B-F309CFE7E9DE_web.jpeg", "47B89CFF-3BB9-44B3-A650-ADB7B8E40A86_web.jpeg", "E38004C7-41B6-4B88-A644-FD1D9BEB6A0B_web.jpeg", "3DDF2F6C-F138-4EF6-A506-CEF9E881443F_web.jpeg", "797A91FA-205A-4E09-8995-91F9EB22D07F_web.jpeg", "CA40D347-5F7C-4D74-89E8-4867A99DE9CD_web.jpeg", "CAF2C20D-5A13-4819-977C-584E0BCA644B_web.jpeg"],
+        name: "New Product 19",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["93B962D2-6319-460F-B1D9-18B33C843323_web.jpeg", "9E9AF229-717A-46A3-BA6B-300AFE4E7605_web.jpeg", "00377098-94EF-4B31-B95A-9C6A9AC1494E_web.jpeg", "47A7ED4F-7ADD-46BE-955C-A9D2F75D2927_web.jpeg", "E7E46E93-EA67-4206-BFC9-1FF34DAE144F_web.jpeg", "0282D384-8ACA-495D-9D24-CA118AD9472B_web.jpeg", "58C1B169-1742-4F58-B3C7-4C9FC1F1D33E_web.jpeg", "678EE211-12EC-4BA4-9D1C-4544A8FF3651_web.jpeg", "844A022C-5D32-40C8-AC15-8995BFCF52A6_web.jpeg", "9C0B30F8-2735-4F2F-8CFB-2F23CEF009B3_web.jpeg", "52C403CB-056E-4A00-9C95-D87DAE7D5365_web.jpeg", "D26558FD-4577-405A-88D0-862B9F8E10CC_web.jpeg", "E4CC5F88-33E2-4336-8BB1-C43D344084B7_web.jpeg", "F979515E-37C7-45AB-8223-F57D033A0612_web.jpeg"],
+        name: "New Product 20",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["9B3C20DE-6A29-45AB-9593-5339A951C795_web.jpeg", "9BF6F0BE-D05D-4AAE-9CB1-57DC770CE0F9_web.jpeg", "D438E223-D1EC-49BD-B04D-7BA649BB3CB9_web.jpeg", "32E28888-5F65-4A2F-BF93-28EB2F87B1EC_web.jpeg", "6025FEE9-9467-4615-9639-B33E9B708101_web.jpeg", "B168CC11-3933-497C-A35E-EF716BAFB6FD_web.jpeg", "C8F294D4-39CE-42F1-A49A-7CD29F1E1D53_web.jpeg", "DB3B19AE-1F66-4B45-9DC7-F67EC0DEEFEA_web.jpeg", "796FF2B7-09FC-4AFC-8F33-9EF0E50E31C1_web.jpeg", "33AFAFD4-2BB9-4C26-B2EF-F9CEA8266720_web.jpeg", "DFFCD5FD-5BB9-4F40-A997-CE6B3C372D81_web.jpeg"],
+        name: "New Product 21",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["6E7FB3FA-056F-4508-AC22-60E481F5721E_web.jpeg", "EC96BE46-103A-4676-A2ED-A3212A3322BA_web.jpeg", "CACA7516-5D3E-4D82-A193-1FF343862522_web.jpeg"],
+        name: "New Product 22",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["5B96D7BF-B445-458B-85B6-6230E8BF4458_web.jpeg", "9386E4D0-BD5D-419D-9144-7DA6CD8309A8_web.jpeg"],
+        name: "New Product 23",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["BA58D835-8D00-48EA-9B55-1E199314B16B_web.jpeg", "CE329CAF-8A20-4A77-AD78-A5E823329642_web.jpeg"],
+        name: "New Product 24",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["74D24377-84E1-4128-9A5B-135E6333A6B3_web.jpeg", "FC543550-6E15-4736-9A3C-4A30EE6C7AC0_web.jpeg"],
+        name: "New Product 25",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["71DCFF86-B2A0-444F-87E8-A3E2D32CD28F_web.jpeg", "EB25DDA4-0027-4047-A7BF-419E57ED1605_web.jpeg"],
+        name: "New Product 26",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["1046B71B-4E90-4344-8B46-019FB9E7B09E_web.jpeg", "AA62EC84-4749-4CE5-B88C-8DC58E5AD2D9_web.jpeg", "F38515D7-9150-4227-99C8-4F2EC2B7AF7A_web.jpeg", "8695E0D3-C9E3-4D08-BF6C-B2E33DFE79C1_web.jpeg", "A8134BF0-7F04-4142-9359-67CA9367C5A1_web.jpeg", "BAD5D162-439E-4403-9798-8F91B48A8E18_web.jpeg", "40C6A2C3-C339-4D2C-9979-ECD4E6D419E5_web.jpeg", "56A7295A-AE82-4850-ACD2-F31A1A0E7FFE_web.jpeg", "798B2814-07F8-4501-B418-63D5EE4092D3_web.jpeg", "E37398D4-12EE-4BAB-BA71-8679770F5142_web.jpeg", "F82B3E77-7A47-43B8-8B4E-C22EB40EEC5B_web.jpeg", "4D0FF27F-F067-4DEB-8F92-C3D4C6BA8E72_web.jpeg", "550EBE34-D8C1-43D2-8264-44099D4FF3A0_web.jpeg", "712D7FD6-B222-4D0B-896F-55A734355A05_web.jpeg"],
+        name: "New Product 27",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["04F29825-6EBD-4C95-9115-4389B3BBAA9B_web.jpeg", "5D46B098-9F25-4113-BC20-0DE1C7FA2E63_web.jpeg", "16F43199-4CAB-42D6-8D95-4933819D07DD_web.jpeg", "54B0F77F-E47A-4375-A9C0-3279CD921D22_web.jpeg", "73484ABB-8946-454E-AC1D-4716886D9F27_web.jpeg"],
+        name: "New Product 28",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["9FD23186-3157-4FCC-85EF-AC9E2582113F_web.jpeg", "119EC81C-2AB5-4333-94CC-EE6D010946A3_web.jpeg", "67E95ECC-208F-4603-AB94-0FF5B0919B7F_web.jpeg", "A5EB3FC5-DFDF-42A1-9A34-69B7503B4AC1_web.jpeg", "6917AD04-EB4D-406C-A1FA-89D87E3FB5F3_web.jpeg", "CD9C2DD2-F035-4F9F-A012-2E2E8DEDFE6F_web.jpeg"],
+        name: "New Product 29",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["8D6DA446-8A8B-49DE-ACE3-89BCFCE60CB7_web.jpeg", "102985EB-2C9E-45B5-9549-E4EED72E6585_web.jpeg", "E3D4D367-207A-4223-8E2A-1F22EAD10522_web.jpeg", "891E2C04-2DA9-4B71-9C4E-EFC2F8231036_web.jpeg", "97F93934-5334-4907-8B83-BDC622EB1656_web.jpeg"],
+        name: "New Product 30",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["5F120D35-9C0A-4C2F-AB19-1ED08818F67D_web.jpeg", "CEE913DB-9211-4CFA-A0D9-5B824D001949_web.jpeg", "0089A450-447F-41AB-95E8-16B9737357B8_web.jpeg", "10DFBF9A-4839-49DB-A359-F072E8F14B54_web.jpeg", "30F69333-7AEA-4B54-B748-C5817ACECF12_web.jpeg", "6DBE75EF-50FD-41B5-A796-E45163CE473D_web.jpeg", "D44512C1-D951-4874-B19E-7A7D1D637252_web.jpeg"],
+        name: "New Product 31",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["A855679C-C66D-4AC1-9906-B1E1E51C187F_web.jpeg", "B38E7880-4EFF-4192-A1D6-56649167F5CA_web.jpeg", "2ABB0658-8C2C-4262-94A3-1FE66B0233ED_web.jpeg"],
+        name: "New Product 32",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["8F91022C-6ACD-4BC7-BB32-C518B496C161_web.jpeg", "2BE480BC-D7F8-4B96-A8B1-0936197538EF_web.jpeg", "33457D1D-DCB8-49F7-B9F0-126C4F90CA52_web.jpeg"],
+        name: "New Product 33",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["8A9B5E0B-F1B7-4982-95FB-263E67CFEC0B_web.jpeg"],
+        name: "New Product 34",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["28BD6800-2139-48B1-B349-598E6C226045_web.jpeg", "D5ABA710-4014-4403-9007-F4B5911C1661_web.jpeg"],
+        name: "New Product 35",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["EDE11DB9-E22C-459D-9410-C5BBE58C2335_web.jpeg", "11A4BA05-EB7C-495A-A1D3-D5FA1F81986F_web.jpeg", "3EE86AF3-3F17-4B7E-9CDD-DA2795730E9C_web.jpeg", "3DC0185B-C55A-4852-BA58-3B5B916BEA99_web.jpeg", "473C7760-E946-452E-AB83-9C16A216AB56_web.jpeg", "D491AB4B-78ED-4079-8681-16FD9927FB86_web.jpeg"],
+        name: "New Product 36",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["5CAF6CA8-DC2B-481B-A828-41120955A190_web.jpeg", "D30412EF-B603-4EB6-A869-2C444069CB53_web.jpeg"],
+        name: "New Product 37",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["363E4C48-1FE4-49C2-8646-F2D4A57B274D_web.jpeg"],
+        name: "New Product 38",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["A2ACA980-866E-4010-9994-8E1547AE07B0_web.jpeg"],
+        name: "New Product 39",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["0567A952-D704-48F9-8F1B-30BA61D9E62D_web.jpeg", "154688AF-1080-4CDC-97AD-A944F06FECE1_web.jpeg", "3AEAFE76-E111-4BA1-9462-A57119139A8A_web.jpeg", "6D6B86A5-950D-4231-87D9-27C04EBE8847_web.jpeg"],
+        name: "New Product 40",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["4670B281-8F6A-482F-A04B-5806F1756FA9_web.jpeg", "58E14E06-7D42-4825-ADC2-6E8B867CAFED_web.jpeg", "9F1411B8-162A-463B-91E2-FE781CE02610_web.jpeg"],
+        name: "New Product 41",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["68573D59-1689-43BC-A4C8-D592E44FA0C8_web.jpeg", "68B0FF38-BA0A-48EC-B0FB-E57556C93D21_web.jpeg", "EC1965FC-733D-4FC4-8EDA-5B8F66B58BA9_web.jpeg", "58DAECE1-FB49-48BB-8490-8B8BC496D030_web.jpeg"],
+        name: "New Product 42",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    },
+    {
+        images: ["196FE27C-88F4-4600-AA43-9AD8851EA2BA_1_102_o_web.jpeg", "1AFC9A3D-8634-4FA2-8EB4-DE32740BF798_1_102_o_web.jpeg", "597DE6DF-63BD-46E3-90C4-7B8E9DA2FB07_1_102_o_web.jpeg", "F364A79C-09A4-4D63-9D11-7F5AC47B17D8_1_102_o_web.jpeg"],
+        name: "New Product 43",
+        price: 999,
+        discountedPrice: 499,
+        features: ["Premium Quality", "Safe for Babies", "Beautiful Design"]
+    }
 ];
 
 // ============================================================================
