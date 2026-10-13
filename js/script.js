@@ -977,7 +977,7 @@ const productImages = [
       "6917AD04-EB4D-406C-A1FA-89D87E3FB5F3_web.jpeg",
       "CD9C2DD2-F035-4F9F-A012-2E2E8DEDFE6F_web.jpeg",
     ],
-    name: "Baby Bag",
+    name: "Mother's Baby Carrier Bag",
     price: 1299,
     discountedPrice: 756,
     features: ["Premium Quality", "Safe for Babies", "Beautiful Design"],
