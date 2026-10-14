@@ -73,7 +73,6 @@ const productImages = [
       "37A1DCDF-C385-443E-A3C9-256F457CD018.jpeg",
       "84A24466-A4F9-4707-9CE1-D508D2F349D8.jpeg",
       "CE3E4753-EB14-4654-9EB7-EF2E14B59182.jpeg",
-
     ],
     name: "SS Feeding Sipper",
     price: 900,
@@ -176,17 +175,6 @@ const productImages = [
     name: "Food Grade Silicone Teether",
     price: 400,
     discountedPrice: 209,
-    features: ["Premium Quality", "Safe for Babies", "Beautiful Design"],
-  },
-  {
-    images: [
-      "032D4B03-16CD-41E7-AAA7-F59A34FE7B76.jpeg",
-      "11DF26C2-6DA1-41AD-AA39-88F11E6162C2.jpeg",
-      "8715D74D-DA46-4258-83BF-9CBD1A4422AD.jpeg",
-    ],
-    name: "Hold Musical Toy",
-    price: 1999,
-    discountedPrice: 1499,
     features: ["Premium Quality", "Safe for Babies", "Beautiful Design"],
   },
   {
@@ -294,7 +282,7 @@ const productImages = [
       "10A014E3-CBD0-4573-9B68-CC08B9D6A27D.jpeg",
       "8FABEB91-345F-459A-B98F-F6D629295799.jpeg",
     ],
-    name: "Classic U Shapped Teether ",
+    name: "Classic U Shapped Brush",
     price: 130,
     discountedPrice: 55,
     features: ["Premium Quality", "Safe for Babies", "Beautiful Design"],
@@ -887,7 +875,7 @@ const productImages = [
       "5B96D7BF-B445-458B-85B6-6230E8BF4458_web.jpeg",
       "9386E4D0-BD5D-419D-9144-7DA6CD8309A8_web.jpeg",
     ],
-    name: "Jabla Musline Button knot",
+    name: "Jabla Musline Button",
     price: 150,
     discountedPrice: 95,
     features: ["Premium Quality", "Safe for Babies", "Beautiful Design"],
@@ -1188,7 +1176,10 @@ window.addEventListener("popstate", function () {
     return;
   }
 
-  if (isModalOpen || (productModalEl && productModalEl.classList.contains("show"))) {
+  if (
+    isModalOpen ||
+    (productModalEl && productModalEl.classList.contains("show"))
+  ) {
     isModalOpen = false;
     const modal = getProductModalInstance();
     if (modal) {
@@ -1303,4 +1294,3 @@ window.openProductModal = function (index) {
     modal.show();
   }
 };
-
