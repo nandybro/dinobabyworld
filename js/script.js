@@ -59,8 +59,8 @@ const productImages = [
   // },
   {
     images: [
-      "EB6EEEF2-9E1F-408D-B460-B3F96DC968F5.jpeg",
       "5DB69851-454A-495E-93A4-9F16B410FC39.jpeg",
+      "EB6EEEF2-9E1F-408D-B460-B3F96DC968F5.jpeg",
       "CF4D1272-F610-4FB8-A700-C5B82B68D998.jpeg",
     ],
     name: "Hot & Cold feeding bottle",
@@ -70,9 +70,10 @@ const productImages = [
   },
   {
     images: [
+      "37A1DCDF-C385-443E-A3C9-256F457CD018.jpeg",
       "84A24466-A4F9-4707-9CE1-D508D2F349D8.jpeg",
       "CE3E4753-EB14-4654-9EB7-EF2E14B59182.jpeg",
-      "37A1DCDF-C385-443E-A3C9-256F457CD018.jpeg",
+
     ],
     name: "SS Feeding Sipper",
     price: 900,
@@ -621,9 +622,9 @@ const productImages = [
       "E3044DFF-A369-4767-8BDB-65C50FEF3D44_web.jpeg",
       "E4614777-D87F-4FEC-B0B8-CC480E56FB19_web.jpeg",
     ],
-    name: "New Product 3",
-    price: 999,
-    discountedPrice: 499,
+    name: "Zoo Zoomers Toy",
+    price: 299,
+    discountedPrice: 180,
     features: ["Premium Quality", "Safe for Babies", "Beautiful Design"],
   },
   {
@@ -644,9 +645,9 @@ const productImages = [
       "B0FD92A1-8AF6-40BD-97B3-A37C1C75F6A7_web.jpeg",
       "02DC8D77-6DFD-43DD-8F30-7BA508715BBD_web.jpeg",
     ],
-    name: "New Product 4",
-    price: 999,
-    discountedPrice: 499,
+    name: "Baby Crab Camera Toy",
+    price: 499,
+    discountedPrice: 379,
     features: ["Premium Quality", "Safe for Babies", "Beautiful Design"],
   },
   {
@@ -661,9 +662,9 @@ const productImages = [
       "D324E3F6-6006-413A-BEC0-DD583FC91ED3_web.jpeg",
       "36E09CE0-CF91-4539-A81A-F47B9B32B013_web.jpeg",
     ],
-    name: "New Product 5",
-    price: 999,
-    discountedPrice: 499,
+    name: "Hold Cute Lion Toy",
+    price: 499,
+    discountedPrice: 380,
     features: ["Premium Quality", "Safe for Babies", "Beautiful Design"],
   },
   {
@@ -679,21 +680,9 @@ const productImages = [
       "71999B8A-EB8C-458D-B40D-34CFA669F251_web.jpeg",
       "C6163BDC-67E7-4520-9CDF-B0D56297960A_web.jpeg",
     ],
-    name: "New Product 6",
-    price: 999,
-    discountedPrice: 499,
-    features: ["Premium Quality", "Safe for Babies", "Beautiful Design"],
-  },
-  {
-    images: [
-      "0558B0EF-A327-4640-A0F5-ED65CCE949E6_web.jpeg",
-      "8FC9EE9B-E2B9-46F6-B5E7-CE93ABB3C118_web.jpeg",
-      "6E8237A4-24CE-45E7-B874-B5F2D3DAE697_web.jpeg",
-      "AB4CF1B7-F69D-4A96-B18D-F68E04B5C7B4_web.jpeg",
-    ],
-    name: "New Product 7",
-    price: 999,
-    discountedPrice: 499,
+    name: "Biggie Ball",
+    price: 249,
+    discountedPrice: 180,
     features: ["Premium Quality", "Safe for Babies", "Beautiful Design"],
   },
   {
@@ -708,9 +697,9 @@ const productImages = [
       "B845485F-83F4-4154-BB79-0E4E79098783_web.jpeg",
       "EE7F03D7-10F9-4DCA-A22C-4FF3482CB19E_web.jpeg",
     ],
-    name: "New Product 8",
-    price: 999,
-    discountedPrice: 499,
+    name: "Jumping Jack Toy",
+    price: 370,
+    discountedPrice: 280,
     features: ["Premium Quality", "Safe for Babies", "Beautiful Design"],
   },
   {
@@ -723,9 +712,9 @@ const productImages = [
       "9734800F-C3F6-4E9F-A112-732DBDB89748_web.jpeg",
       "CE63420A-D3EF-49DB-A1CC-16CF9E9A7786_web.jpeg",
     ],
-    name: "New Product 9",
-    price: 999,
-    discountedPrice: 499,
+    name: "Steel Sipper Bottle",
+    price: 799,
+    discountedPrice: 500,
     features: ["Premium Quality", "Safe for Babies", "Beautiful Design"],
   },
   {
@@ -1170,17 +1159,69 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Modal Logic
+// Modal Logic & Back Button Handling
 let productModalInstance = null;
+const productModalEl = document.getElementById("productModal");
+let isModalOpen = false;
+let isProgrammaticBack = false;
+
+// Clean up any stale hash if page reloads
+if (window.location.hash === "#view-product") {
+  history.replaceState(
+    null,
+    "",
+    window.location.pathname + window.location.search,
+  );
+}
+
+function getProductModalInstance() {
+  if (!productModalInstance && productModalEl) {
+    productModalInstance = new bootstrap.Modal(productModalEl);
+  }
+  return productModalInstance;
+}
+
+// Intercept browser / device Back button to close modal instead of leaving the website
+window.addEventListener("popstate", function () {
+  if (isProgrammaticBack) {
+    isProgrammaticBack = false;
+    return;
+  }
+
+  if (isModalOpen || (productModalEl && productModalEl.classList.contains("show"))) {
+    isModalOpen = false;
+    const modal = getProductModalInstance();
+    if (modal) {
+      modal.hide();
+    }
+  }
+});
+
+// Setup modal event listeners for history synchronization
+if (productModalEl) {
+  productModalEl.addEventListener("show.bs.modal", function () {
+    isModalOpen = true;
+    if (!history.state || !history.state.productModalOpen) {
+      history.pushState({ productModalOpen: true }, "", "#view-product");
+    }
+  });
+
+  productModalEl.addEventListener("hidden.bs.modal", function () {
+    if (isModalOpen) {
+      // Modal was closed via UI (close 'X' button, backdrop, or ESC) rather than browser Back button
+      isModalOpen = false;
+      if (history.state && history.state.productModalOpen) {
+        isProgrammaticBack = true;
+        history.back();
+      }
+    }
+  });
+}
+
 window.openProductModal = function (index) {
   const product = productImages[index];
   const modalBody = document.getElementById("productModalBody");
-
-  if (!productModalInstance) {
-    productModalInstance = new bootstrap.Modal(
-      document.getElementById("productModal"),
-    );
-  }
+  const modal = getProductModalInstance();
 
   // Generate carousel HTML if multiple images, else just img
   let imagesHtml = "";
@@ -1258,5 +1299,8 @@ window.openProductModal = function (index) {
         </div>
     `;
 
-  productModalInstance.show();
+  if (modal) {
+    modal.show();
+  }
 };
+
