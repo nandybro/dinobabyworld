@@ -47,7 +47,7 @@ const productImages = [
     ],
     name: "Baby Hand Gloves",
     price: 60,
-    discountedPrice: 30,
+    discountedPrice: 45,
     features: ["Premium Quality", "Safe for Babies", "Beautiful Design"],
   },
   // {
