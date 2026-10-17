@@ -450,9 +450,9 @@ const productImages = [
       "9DC48709-2FF6-49C2-9F33-EFBABD66B7EB.jpeg",
       "D911DA47-BAE3-4FFA-8661-47BA308FF69C.jpeg",
     ],
-    name: "Baby Comb & Brush Set",
-    price: 400,
-    discountedPrice: 195,
+    name: "Medicine Feeder",
+    price: 110,
+    discountedPrice: 69,
     features: ["Premium Quality", "Safe for Babies", "Beautiful Design"],
   },
   {
@@ -461,9 +461,9 @@ const productImages = [
       "AE3D9094-80F0-436F-81AF-FFFB38E7B648.jpeg",
       "6698C02E-E595-44E6-9BED-C2825CAC38A4.jpeg",
     ],
-    name: "Medicine Feeder",
-    price: 110,
-    discountedPrice: 69,
+    name: "Medicine Dropper",
+    price: 140,
+    discountedPrice: 99,
     features: ["Premium Quality", "Safe for Babies", "Beautiful Design"],
   },
   {
@@ -473,9 +473,9 @@ const productImages = [
       "6340E693-8EF8-4C74-BB05-6F4273804F52.jpeg",
       "34D2DED6-0719-429B-8894-0FECDDEAA37B.jpeg",
     ],
-    name: "Medicine Dropper",
-    price: 200,
-    discountedPrice: 99,
+    name: "Advance Baby Nose Cleaner",
+    price: 400,
+    discountedPrice: 235,
     features: ["Premium Quality", "Safe for Babies", "Beautiful Design"],
   },
   {
@@ -487,9 +487,9 @@ const productImages = [
       "FBFDB99C-EA59-425A-9BE0-95B10DD65526.jpeg",
       "49026231-8058-4DAD-96F2-FDA749C9C5D4.jpeg",
     ],
-    name: "Advance Baby Nose Cleaner",
-    price: 400,
-    discountedPrice: 235,
+    name: "Baby Nose Cleaner",
+    price: 220,
+    discountedPrice: 145,
     features: ["Premium Quality", "Safe for Babies", "Beautiful Design"],
   },
   {
@@ -1123,7 +1123,7 @@ document.addEventListener("DOMContentLoaded", () => {
     colDiv.className = "col-sm-6 col-md-4 col-lg-3";
 
     colDiv.innerHTML = `
-            <div class="product-card h-100">
+            <div class="product-card h-100" id="product-card-${index}">
                 <div class="product-image-container" onclick="openProductModal(${index})" style="cursor: pointer;" title="Click to view details">
                     <img src="images/${imageFilename}" alt="${displayName}" loading="lazy" onerror="this.src='https://via.placeholder.com/250x250?text=Image+Not+Found'">
                     <div class="quick-view-overlay">
@@ -1136,15 +1136,23 @@ document.addEventListener("DOMContentLoaded", () => {
                         ${priceOriginal ? `<span class="price-original text-muted text-decoration-line-through me-2">${priceOriginal}</span>` : ""}
                         ${priceDiscounted ? `<span class="price-discounted text-success fw-bold fs-5">${priceDiscounted}</span>` : ""}
                     </div>
-                    <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp mt-auto w-100">
-                        <i class="fa-brands fa-whatsapp fs-5"></i> Order Now
-                    </a>
+                    <div class="product-actions mt-auto w-100">
+                        <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" aria-label="Order ${displayName} on WhatsApp">
+                            <i class="fa-brands fa-whatsapp fs-5"></i> Order Now
+                        </a>
+                        <button type="button" class="btn btn-share" onclick="shareProduct(event, ${index})" title="Share ${displayName}" aria-label="Share ${displayName}">
+                            <i class="fa-solid fa-share-nodes"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         `;
 
     productsContainer.appendChild(colDiv);
   });
+
+  // Check if page was loaded via a shared product link
+  checkSharedProductLink();
 });
 
 // Modal Logic & Back Button Handling
@@ -1281,10 +1289,14 @@ window.openProductModal = function (index) {
                     ${featuresHtml}
                 </div>
                 
-                <div class="mt-4 pt-2 border-top">
-                    <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp w-100 py-3 fs-5 shadow-sm">
+                <div class="mt-4 pt-2 border-top d-flex align-items-center gap-2 gap-sm-3">
+                    <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp flex-grow-1 py-3 fs-5 shadow-sm" aria-label="Order on WhatsApp">
                         <i class="fa-brands fa-whatsapp fs-4"></i> Order on WhatsApp
                     </a>
+                    <button type="button" class="btn btn-share btn-share-modal shadow-sm" onclick="shareProduct(event, ${index})" title="Share this product" aria-label="Share ${product.name}">
+                        <i class="fa-solid fa-share-nodes fs-5"></i>
+                        <span class="d-none d-sm-inline ms-1">Share</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -1294,3 +1306,218 @@ window.openProductModal = function (index) {
     modal.show();
   }
 };
+
+// ============================================================================
+// SHARE & DEEP-LINKING UTILITIES
+// ============================================================================
+
+/**
+ * Generate a URL-safe, SEO-friendly slug for a product.
+ */
+function getProductSlug(product, index) {
+  if (!product || !product.name) return `item-${index + 1}`;
+  return (
+    product.name
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "") || `item-${index + 1}`
+  );
+}
+
+/**
+ * Modern floating toast notification with glassmorphism & optional direct WhatsApp forward.
+ */
+function showShareToast(message, waShareUrl = null) {
+  let container = document.getElementById("shareToastContainer");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "shareToastContainer";
+    container.className = "share-toast-container";
+    document.body.appendChild(container);
+  }
+
+  // Clear any existing toast
+  container.innerHTML = "";
+
+  const toast = document.createElement("div");
+  toast.className = "share-toast";
+  toast.setAttribute("role", "status");
+  toast.setAttribute("aria-live", "polite");
+
+  const waBtnHtml = waShareUrl
+    ? `<a href="${waShareUrl}" target="_blank" rel="noopener noreferrer" class="btn-toast-wa" title="Forward on WhatsApp">
+         <i class="fa-brands fa-whatsapp"></i> WhatsApp
+       </a>`
+    : "";
+
+  toast.innerHTML = `
+    <div class="share-toast-content">
+      <div class="share-toast-icon">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <span class="share-toast-text">${message}</span>
+    </div>
+    <div class="share-toast-actions">
+      ${waBtnHtml}
+      <button type="button" class="btn-toast-close" aria-label="Dismiss notification">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+  `;
+
+  const closeBtn = toast.querySelector(".btn-toast-close");
+  closeBtn.addEventListener("click", () => dismissToast(toast));
+
+  container.appendChild(toast);
+
+  const autoDismissTimer = setTimeout(() => {
+    dismissToast(toast);
+  }, 4200);
+
+  function dismissToast(el) {
+    clearTimeout(autoDismissTimer);
+    el.classList.add("hiding");
+    el.addEventListener("animationend", () => {
+      el.remove();
+    });
+  }
+}
+
+/**
+ * Fallback-safe clipboard copy function.
+ */
+async function copyTextToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (e) {
+      console.warn("navigator.clipboard failed, attempting fallback:", e);
+    }
+  }
+
+  // Standard execCommand fallback
+  const textArea = document.createElement("textarea");
+  textArea.value = text;
+  textArea.style.position = "fixed";
+  textArea.style.left = "-999999px";
+  textArea.style.top = "-999999px";
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+  let successful = false;
+  try {
+    successful = document.execCommand("copy");
+  } catch (err) {
+    console.error("ExecCommand copy failed:", err);
+  }
+  textArea.remove();
+  return successful;
+}
+
+/**
+ * Share a product via Web Share API or graceful clipboard fallback.
+ */
+window.shareProduct = async function (event, index) {
+  if (event) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
+  const product = productImages[index];
+  if (!product) return;
+
+  const button = event?.currentTarget;
+  const originalButtonHtml = button ? button.innerHTML : null;
+
+  // Build canonical share URL with deep-link parameter
+  const slug = getProductSlug(product, index);
+  const url = new URL(window.location.href);
+  url.searchParams.set("product", slug);
+  url.hash = "products";
+  const shareUrl = url.toString();
+
+  const shareTitle = `${product.name} | Dino Baby World 🦕`;
+  const priceDisplay = product.discountedPrice
+    ? `₹${product.discountedPrice}`
+    : product.price
+      ? `₹${product.price}`
+      : "";
+  const priceText = priceDisplay ? ` for ${priceDisplay}` : "";
+  const shareText = `Check out "${product.name}"${priceText} at Dino Baby World! 🦕💚\n${shareUrl}`;
+  const waShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+
+  // Visual button feedback
+  function setButtonCopiedState() {
+    if (!button) return;
+    button.classList.add("copied");
+    const hasText = button.querySelector("span");
+    button.innerHTML = `<i class="fa-solid fa-check"></i>${hasText ? '<span class="d-none d-sm-inline ms-1">Copied!</span>' : ""}`;
+    setTimeout(() => {
+      button.classList.remove("copied");
+      if (originalButtonHtml) button.innerHTML = originalButtonHtml;
+    }, 2200);
+  }
+
+  // 1. Primary: Native Web Share API (Mobile OS share sheet & modern desktop)
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: shareTitle,
+        text: `Check out "${product.name}"${priceText} at Dino Baby World! 🦕💚`,
+        url: shareUrl,
+      });
+      showShareToast("Shared successfully! 🎉");
+      return;
+    } catch (err) {
+      if (err.name === "AbortError") {
+        // User closed native share sheet intentionally
+        return;
+      }
+      console.warn("Native share failed, falling back to clipboard:", err);
+    }
+  }
+
+  // 2. Fallback: Copy to clipboard with instant toast + WhatsApp shortcut
+  const copied = await copyTextToClipboard(shareUrl);
+  setButtonCopiedState();
+
+  if (copied) {
+    showShareToast("Link copied to clipboard! 📋", waShareUrl);
+  } else {
+    showShareToast("Share link ready! 🦕", waShareUrl);
+  }
+};
+
+/**
+ * Handle incoming visitors arriving from a shared product link.
+ * Scrolls to the card, activates glowing pulse, and opens the detail modal.
+ */
+function checkSharedProductLink() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const sharedSlug = urlParams.get("product") || urlParams.get("p");
+  if (!sharedSlug) return;
+
+  const targetIndex = productImages.findIndex((p, idx) => {
+    return (
+      getProductSlug(p, idx) === sharedSlug.toLowerCase() ||
+      String(idx) === sharedSlug ||
+      String(idx + 1) === sharedSlug
+    );
+  });
+
+  if (targetIndex !== -1) {
+    setTimeout(() => {
+      const targetCard = document.getElementById(`product-card-${targetIndex}`);
+      if (targetCard) {
+        targetCard.scrollIntoView({ behavior: "smooth", block: "center" });
+        targetCard.classList.add("product-card-highlight");
+        setTimeout(() => {
+          targetCard.classList.remove("product-card-highlight");
+        }, 3500);
+      }
+      openProductModal(targetIndex);
+    }, 450);
+  }
+}
