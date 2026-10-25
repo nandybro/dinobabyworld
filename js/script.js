@@ -1058,8 +1058,8 @@ const productImages = [
       "6D6B86A5-950D-4231-87D9-27C04EBE8847_web.jpeg",
     ],
     name: "Baby Lotus bed",
-    price: 1799,
-    discountedPrice: 1200,
+    price: 1299,
+    discountedPrice: 860,
     features: ["Premium Quality", "Safe for Babies", "Beautiful Design"],
   },
   {

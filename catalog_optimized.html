@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dino Baby World - Product Catalog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #E8ECE9;
+      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1E3A2E;
+    }
+
+    /* Screen preview styling */
+    @media screen {
+      body {
+        padding: 30px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        background: #D8DFD9;
+      }
+      .catalog-page {
+        box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+      }
+    }
+
+    /* Each A4 Page */
+    .catalog-page {
+      width: 210mm;
+      height: 297mm;
+      max-height: 297mm;
+      padding: 8mm 12mm 7mm 12mm;
+      background: #FAF7F0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      page-break-after: always;
+      break-after: page;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .catalog-page:last-child {
+      page-break-after: auto;
+      break-after: auto;
+    }
+
+    /* Page Header */
+    .catalog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 5mm;
+      border-bottom: 1.5px dashed #C8DEC9;
+      height: 18mm;
+      flex-shrink: 0;
+    }
+
+    .brand-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      height: 14mm;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: 'Baloo 2', cursive, sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      color: #2D5A3D;
+      line-height: 1.1;
+      letter-spacing: -0.3px;
+    }
+
+    .brand-subtitle {
+      font-size: 9.5px;
+      font-weight: 700;
+      color: #5EAF82;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .header-contact {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 3px;
+    }
+
+    .wa-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #25D366;
+      color: #ffffff;
+      padding: 3px 9px;
+      border-radius: 12px;
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+
+    .wa-badge svg {
+      width: 11px;
+      height: 11px;
+      fill: #ffffff;
+    }
+
+    .insta-tag {
+      font-size: 8.5px;
+      font-weight: 700;
+      color: #6B8F77;
+    }
+
+    /* 3x3 Grid */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 76mm);
+      gap: 5.5mm;
+      height: 240mm;
+      align-content: start;
+      margin: 4.5mm 0;
+      flex-shrink: 0;
+    }
+
+    /* Product Card */
+    .product-card {
+      background: #FFFFFF;
+      border: 1px solid #DCECE1;
+      border-radius: 9px;
+      padding: 2.5mm 2.5mm 2.5mm 2.5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(74, 155, 111, 0.06);
+      position: relative;
+      overflow: hidden;
+      height: 76mm;
+      box-sizing: border-box;
+    }
+
+    .card-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .image-wrapper {
+      width: 100%;
+      height: 48mm;
+      background: #FDFCF9;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2mm;
+      border: 1px solid #EEF5F0;
+      overflow: hidden;
+    }
+
+    .product-img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .product-name {
+      margin-top: 2mm;
+      font-family: 'Nunito', sans-serif;
+      font-size: 10.5px;
+      font-weight: 800;
+      color: #1E3A2E;
+      text-align: center;
+      line-height: 1.2;
+      height: 11.5mm;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      padding: 0 1mm;
+    }
+
+    /* Price Section: Discounted price as price */
+    .price-container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #EBF7EE;
+      border: 1px solid #CCEBD6;
+      border-radius: 6px;
+      padding: 1.8mm 0;
+      margin-top: 1mm;
+    }
+
+    .price-label {
+      font-size: 9px;
+      font-weight: 700;
+      color: #447B58;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-right: 4px;
+    }
+
+    .price-value {
+      font-family: 'Baloo 2', cursive, sans-serif;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #1B6E3B;
+      line-height: 1;
+    }
+
+    /* Page Footer */
+    .catalog-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 3.5mm;
+      border-top: 1px solid #DCECE1;
+      height: 8mm;
+      font-size: 8.5px;
+      font-weight: 700;
+      color: #6F937B;
+      flex-shrink: 0;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .footer-center {
+      color: #4A9B6F;
+    }
+
+    .footer-page {
+      background: #E6F4EC;
+      color: #2D5A3D;
+      padding: 1px 7px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 8.5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="catalog-page">
+    <!-- Header -->
+    <header class="catalog-header">
+      <div class="brand-left">
+        <img src="images/logo.png" alt="Dino Baby World Logo" class="brand-logo">
+        <div class="brand-text">
+          <div class="brand-title">Dino Baby World</div>
+          <div class="brand-subtitle">Curated Baby Essentials • Product Catalog</div>
+        </div>
+      </div>
+      <div class="header-contact">
+        <div class="wa-badge">
+          <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.07 7.38C8.91 7.38 8.65 7.44 8.43 7.68C8.21 7.92 7.6 8.49 7.6 9.66C7.6 10.82 8.45 11.95 8.57 12.11C8.69 12.27 10.23 14.64 12.6 15.65C14.57 16.49 14.97 16.33 15.4 16.29C15.83 16.25 16.79 15.72 16.99 15.16C17.19 14.6 17.19 14.12 17.13 14.02C17.07 13.92 16.91 13.86 16.67 13.74C16.43 13.62 15.24 13.04 15.02 12.96C14.8 12.88 14.64 12.84 14.48 13.08C14.32 13.32 13.86 13.86 13.72 14.02C13.58 14.18 13.44 14.2 13.2 14.08C12.96 13.96 11.95 13.63 10.75 12.56C9.82 11.73 9.19 10.7 9.07 10.46C8.95 10.22 9.06 10.09 9.18 9.97C9.29 9.86 9.43 9.68 9.55 9.54C9.67 9.4 9.71 9.3 9.79 9.14C9.87 8.98 9.83 8.84 9.77 8.72C9.71 8.6 9.25 7.47 9.07 7.38Z"/></svg>
+          <span>+91 9500368149</span>
+        </div>
+        <div class="insta-tag">Instagram: @dino_babyworld</div>
+      </div>
+    </header>
+
+    <!-- 3x3 Grid -->
+    <main class="grid-container">
+      
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/6381B9CF-B8BE-4D5D-91CF-72F7910006CC.jpeg" alt="100 Words Book" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="100 Words Book">100 Words Book</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹530</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/A225EE98-D47A-4846-BB91-56AE5ADD1EE4.jpeg" alt="Hand Gloves with Rib" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Hand Gloves with Rib">Hand Gloves with Rib</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹60</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/40695E18-8F54-429D-9C51-CBFAD5FDCA0F.jpeg" alt="Baby Hand Gloves" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby Hand Gloves">Baby Hand Gloves</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹45</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/5DB69851-454A-495E-93A4-9F16B410FC39.jpeg" alt="Hot & Cold feeding bottle" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Hot & Cold feeding bottle">Hot & Cold feeding bottle</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹580</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/37A1DCDF-C385-443E-A3C9-256F457CD018.jpeg" alt="SS Feeding Sipper" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="SS Feeding Sipper">SS Feeding Sipper</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹625</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/2A0F7FA3-BD1F-4ADC-809A-DC49CA6A2E2A.jpeg" alt="Baby Potty seat" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby Potty seat">Baby Potty seat</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹350</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/0C6D2086-968D-40B5-BA91-692B04F3ACD9.jpeg" alt="Potty Handle seat" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Potty Handle seat">Potty Handle seat</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹339</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/715AC826-7B2E-4105-A974-A2B9F2C4607A.jpeg" alt="Potty Conmfort seat" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Potty Conmfort seat">Potty Conmfort seat</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹519</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/4BE35DE5-794F-468D-852C-0ED45D8F0B3D.jpeg" alt="Baby comb" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby comb">Baby comb</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹30</span>
+          </div>
+        </div>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="catalog-footer">
+      <div class="footer-left">
+        <span>🦕 Dino Baby World</span>
+        <span>•</span>
+        <span>Safe &amp; Loved Baby Essentials</span>
+      </div>
+      <div class="footer-center">To order, send screenshot / product name to WhatsApp</div>
+      <div class="footer-page">Page 1 of 9</div>
+    </footer>
+  </div>
+
+
+  <div class="catalog-page">
+    <!-- Header -->
+    <header class="catalog-header">
+      <div class="brand-left">
+        <img src="images/logo.png" alt="Dino Baby World Logo" class="brand-logo">
+        <div class="brand-text">
+          <div class="brand-title">Dino Baby World</div>
+          <div class="brand-subtitle">Curated Baby Essentials • Product Catalog</div>
+        </div>
+      </div>
+      <div class="header-contact">
+        <div class="wa-badge">
+          <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.07 7.38C8.91 7.38 8.65 7.44 8.43 7.68C8.21 7.92 7.6 8.49 7.6 9.66C7.6 10.82 8.45 11.95 8.57 12.11C8.69 12.27 10.23 14.64 12.6 15.65C14.57 16.49 14.97 16.33 15.4 16.29C15.83 16.25 16.79 15.72 16.99 15.16C17.19 14.6 17.19 14.12 17.13 14.02C17.07 13.92 16.91 13.86 16.67 13.74C16.43 13.62 15.24 13.04 15.02 12.96C14.8 12.88 14.64 12.84 14.48 13.08C14.32 13.32 13.86 13.86 13.72 14.02C13.58 14.18 13.44 14.2 13.2 14.08C12.96 13.96 11.95 13.63 10.75 12.56C9.82 11.73 9.19 10.7 9.07 10.46C8.95 10.22 9.06 10.09 9.18 9.97C9.29 9.86 9.43 9.68 9.55 9.54C9.67 9.4 9.71 9.3 9.79 9.14C9.87 8.98 9.83 8.84 9.77 8.72C9.71 8.6 9.25 7.47 9.07 7.38Z"/></svg>
+          <span>+91 9500368149</span>
+        </div>
+        <div class="insta-tag">Instagram: @dino_babyworld</div>
+      </div>
+    </header>
+
+    <!-- 3x3 Grid -->
+    <main class="grid-container">
+      
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/D9E02FF9-CF1B-41EF-956B-4F0721745F77.jpeg" alt="Beautiful Open Closed Tooth Brush" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Beautiful Open Closed Tooth Brush">Beautiful Open Closed Tooth Brush</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹179</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/2D00EC8A-A9DD-4265-8BE2-953EC824A99F.jpeg" alt="Soft Rattle" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Soft Rattle">Soft Rattle</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹100</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/9E2A444F-6C5D-4271-BF39-BAC02BD76F9D.jpeg" alt="Rechargeable Milk Warmer" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Rechargeable Milk Warmer">Rechargeable Milk Warmer</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹979</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/FE7BB4B6-8C14-4DFF-9C90-56D2D0B5216D.jpeg" alt="Food Grade Silicone Teether" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Food Grade Silicone Teether">Food Grade Silicone Teether</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹209</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/B8418591-2811-42D9-84FD-336F439A3CDB.jpeg" alt="Santa Clause Tooth Brush" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Santa Clause Tooth Brush">Santa Clause Tooth Brush</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹59</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/348EA225-D8A8-434C-A2F7-CB021DCB2331.jpeg" alt="Kids Comb" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Kids Comb">Kids Comb</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹30</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/9F11977A-14B3-40C2-B86A-CA26448FF182.jpeg" alt="Plush Toy Set" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Plush Toy Set">Plush Toy Set</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹349</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/499E417B-CC6F-4B41-826D-3F65B2E9B8F5.jpeg" alt="Silicone Fruit Shapped Teether Toy" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Silicone Fruit Shapped Teether Toy">Silicone Fruit Shapped Teether Toy</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹165</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/E81A2EAA-AB1E-4E22-B84A-5ECDC96702AD.jpeg" alt="Baby Teether" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby Teether">Baby Teether</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹80</span>
+          </div>
+        </div>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="catalog-footer">
+      <div class="footer-left">
+        <span>🦕 Dino Baby World</span>
+        <span>•</span>
+        <span>Safe &amp; Loved Baby Essentials</span>
+      </div>
+      <div class="footer-center">To order, send screenshot / product name to WhatsApp</div>
+      <div class="footer-page">Page 2 of 9</div>
+    </footer>
+  </div>
+
+
+  <div class="catalog-page">
+    <!-- Header -->
+    <header class="catalog-header">
+      <div class="brand-left">
+        <img src="images/logo.png" alt="Dino Baby World Logo" class="brand-logo">
+        <div class="brand-text">
+          <div class="brand-title">Dino Baby World</div>
+          <div class="brand-subtitle">Curated Baby Essentials • Product Catalog</div>
+        </div>
+      </div>
+      <div class="header-contact">
+        <div class="wa-badge">
+          <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.07 7.38C8.91 7.38 8.65 7.44 8.43 7.68C8.21 7.92 7.6 8.49 7.6 9.66C7.6 10.82 8.45 11.95 8.57 12.11C8.69 12.27 10.23 14.64 12.6 15.65C14.57 16.49 14.97 16.33 15.4 16.29C15.83 16.25 16.79 15.72 16.99 15.16C17.19 14.6 17.19 14.12 17.13 14.02C17.07 13.92 16.91 13.86 16.67 13.74C16.43 13.62 15.24 13.04 15.02 12.96C14.8 12.88 14.64 12.84 14.48 13.08C14.32 13.32 13.86 13.86 13.72 14.02C13.58 14.18 13.44 14.2 13.2 14.08C12.96 13.96 11.95 13.63 10.75 12.56C9.82 11.73 9.19 10.7 9.07 10.46C8.95 10.22 9.06 10.09 9.18 9.97C9.29 9.86 9.43 9.68 9.55 9.54C9.67 9.4 9.71 9.3 9.79 9.14C9.87 8.98 9.83 8.84 9.77 8.72C9.71 8.6 9.25 7.47 9.07 7.38Z"/></svg>
+          <span>+91 9500368149</span>
+        </div>
+        <div class="insta-tag">Instagram: @dino_babyworld</div>
+      </div>
+    </header>
+
+    <!-- 3x3 Grid -->
+    <main class="grid-container">
+      
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/E2F00B15-5D8B-40A1-BF49-9C0059BF4FFA.jpeg" alt="U shapped tooth Brush" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="U shapped tooth Brush">U shapped tooth Brush</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹35</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/94291CBE-32F1-495D-B26E-6ECE59FF0220.jpeg" alt="Baby Teether with toy" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby Teether with toy">Baby Teether with toy</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹225</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/6E6252D7-B37C-4B79-8215-BDE6B20EF846.jpeg" alt="Classic U Shapped Brush" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Classic U Shapped Brush">Classic U Shapped Brush</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹55</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/F0659D90-FCC7-4CBC-A478-3278238F3F5E.jpeg" alt="4 pieces Baby care kit" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="4 pieces Baby care kit">4 pieces Baby care kit</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹160</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/28C53DAD-746D-4324-B517-185848335B15.jpeg" alt="Classic Baby Brush" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Classic Baby Brush">Classic Baby Brush</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹100</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/45B7594C-8714-4F9B-9C58-B645D5785D1C.jpeg" alt="Nursery Organizer" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Nursery Organizer">Nursery Organizer</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹1499</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/AB6AE3A3-60F1-40A4-BAFC-6A1D21FD5D51.jpeg" alt="Cartoon soft tooth brush" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Cartoon soft tooth brush">Cartoon soft tooth brush</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹180</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/3DB768E2-33D4-4D33-97BF-0C967BFB953D.jpeg" alt="Tooth Brush Soft Bristle" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Tooth Brush Soft Bristle">Tooth Brush Soft Bristle</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹160</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/1E03428A-854E-47EE-980F-C4944DB15016.jpeg" alt="SS Medicine Feeder" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="SS Medicine Feeder">SS Medicine Feeder</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹40</span>
+          </div>
+        </div>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="catalog-footer">
+      <div class="footer-left">
+        <span>🦕 Dino Baby World</span>
+        <span>•</span>
+        <span>Safe &amp; Loved Baby Essentials</span>
+      </div>
+      <div class="footer-center">To order, send screenshot / product name to WhatsApp</div>
+      <div class="footer-page">Page 3 of 9</div>
+    </footer>
+  </div>
+
+
+  <div class="catalog-page">
+    <!-- Header -->
+    <header class="catalog-header">
+      <div class="brand-left">
+        <img src="images/logo.png" alt="Dino Baby World Logo" class="brand-logo">
+        <div class="brand-text">
+          <div class="brand-title">Dino Baby World</div>
+          <div class="brand-subtitle">Curated Baby Essentials • Product Catalog</div>
+        </div>
+      </div>
+      <div class="header-contact">
+        <div class="wa-badge">
+          <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.07 7.38C8.91 7.38 8.65 7.44 8.43 7.68C8.21 7.92 7.6 8.49 7.6 9.66C7.6 10.82 8.45 11.95 8.57 12.11C8.69 12.27 10.23 14.64 12.6 15.65C14.57 16.49 14.97 16.33 15.4 16.29C15.83 16.25 16.79 15.72 16.99 15.16C17.19 14.6 17.19 14.12 17.13 14.02C17.07 13.92 16.91 13.86 16.67 13.74C16.43 13.62 15.24 13.04 15.02 12.96C14.8 12.88 14.64 12.84 14.48 13.08C14.32 13.32 13.86 13.86 13.72 14.02C13.58 14.18 13.44 14.2 13.2 14.08C12.96 13.96 11.95 13.63 10.75 12.56C9.82 11.73 9.19 10.7 9.07 10.46C8.95 10.22 9.06 10.09 9.18 9.97C9.29 9.86 9.43 9.68 9.55 9.54C9.67 9.4 9.71 9.3 9.79 9.14C9.87 8.98 9.83 8.84 9.77 8.72C9.71 8.6 9.25 7.47 9.07 7.38Z"/></svg>
+          <span>+91 9500368149</span>
+        </div>
+        <div class="insta-tag">Instagram: @dino_babyworld</div>
+      </div>
+    </header>
+
+    <!-- 3x3 Grid -->
+    <main class="grid-container">
+      
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/5B39EFB4-6D8E-4F07-9E47-A3507C9F1C5D.jpeg" alt="Electric Baby Manicure Set" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Electric Baby Manicure Set">Electric Baby Manicure Set</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹340</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/7786614E-3785-403F-B4CD-7085AE214AD4.jpeg" alt="Baby Three Side Soft Tooth Brush " class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby Three Side Soft Tooth Brush ">Baby Three Side Soft Tooth Brush </div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹170</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/85B01174-CF4A-448F-8EC0-00BBA67B9D1C.jpeg" alt="Baby food feeder" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby food feeder">Baby food feeder</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹280</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/74524E7E-0EB3-49FF-A209-E5DE5BC2D844.jpeg" alt="Baby Food Feeder" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby Food Feeder">Baby Food Feeder</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹250</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/538FF39E-1A83-42F4-9365-A5A138D5BB96.jpeg" alt="Baby Food Feeder" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby Food Feeder">Baby Food Feeder</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹220</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/99982E37-1950-4A7E-95F3-EB6794AFE2A1.jpeg" alt="Soft Comb with Brush" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Soft Comb with Brush">Soft Comb with Brush</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹275</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/B0880134-1DB8-4A36-8499-18172BF86DE3.jpeg" alt="Medicine Feeder" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Medicine Feeder">Medicine Feeder</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹69</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/124C5D6A-10F7-435B-A482-4535488B7B9D.jpeg" alt="Medicine Dropper" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Medicine Dropper">Medicine Dropper</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹99</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/D28C3DF3-68F8-49C7-81E4-19C6C534F9FF.jpeg" alt="Advance Baby Nose Cleaner" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Advance Baby Nose Cleaner">Advance Baby Nose Cleaner</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹235</span>
+          </div>
+        </div>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="catalog-footer">
+      <div class="footer-left">
+        <span>🦕 Dino Baby World</span>
+        <span>•</span>
+        <span>Safe &amp; Loved Baby Essentials</span>
+      </div>
+      <div class="footer-center">To order, send screenshot / product name to WhatsApp</div>
+      <div class="footer-page">Page 4 of 9</div>
+    </footer>
+  </div>
+
+
+  <div class="catalog-page">
+    <!-- Header -->
+    <header class="catalog-header">
+      <div class="brand-left">
+        <img src="images/logo.png" alt="Dino Baby World Logo" class="brand-logo">
+        <div class="brand-text">
+          <div class="brand-title">Dino Baby World</div>
+          <div class="brand-subtitle">Curated Baby Essentials • Product Catalog</div>
+        </div>
+      </div>
+      <div class="header-contact">
+        <div class="wa-badge">
+          <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.07 7.38C8.91 7.38 8.65 7.44 8.43 7.68C8.21 7.92 7.6 8.49 7.6 9.66C7.6 10.82 8.45 11.95 8.57 12.11C8.69 12.27 10.23 14.64 12.6 15.65C14.57 16.49 14.97 16.33 15.4 16.29C15.83 16.25 16.79 15.72 16.99 15.16C17.19 14.6 17.19 14.12 17.13 14.02C17.07 13.92 16.91 13.86 16.67 13.74C16.43 13.62 15.24 13.04 15.02 12.96C14.8 12.88 14.64 12.84 14.48 13.08C14.32 13.32 13.86 13.86 13.72 14.02C13.58 14.18 13.44 14.2 13.2 14.08C12.96 13.96 11.95 13.63 10.75 12.56C9.82 11.73 9.19 10.7 9.07 10.46C8.95 10.22 9.06 10.09 9.18 9.97C9.29 9.86 9.43 9.68 9.55 9.54C9.67 9.4 9.71 9.3 9.79 9.14C9.87 8.98 9.83 8.84 9.77 8.72C9.71 8.6 9.25 7.47 9.07 7.38Z"/></svg>
+          <span>+91 9500368149</span>
+        </div>
+        <div class="insta-tag">Instagram: @dino_babyworld</div>
+      </div>
+    </header>
+
+    <!-- 3x3 Grid -->
+    <main class="grid-container">
+      
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/B1C63918-02BF-40F8-8480-F89B834569E7.jpeg" alt="Baby Nose Cleaner" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby Nose Cleaner">Baby Nose Cleaner</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹145</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/1A89C943-C3F4-428B-9317-F911F188B8CF.jpeg" alt="Hand Gloves Silicone Teether" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Hand Gloves Silicone Teether">Hand Gloves Silicone Teether</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹250</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/D1BCB74B-2123-43E4-87B9-1BEEF866FFC4.jpeg" alt="Hand Gloves Silicone Teether" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Hand Gloves Silicone Teether">Hand Gloves Silicone Teether</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹160</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/60C7E0BB-2E8F-4BF9-9D31-A345904C2448.jpeg" alt="Baby Nail Trimmer" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby Nail Trimmer">Baby Nail Trimmer</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹249</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/A7CDAD02-EA78-4C11-9435-174B59746ECA.jpeg" alt="Baby Water proof PlayMat" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby Water proof PlayMat">Baby Water proof PlayMat</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹600</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/9F918437-1A1E-4F4E-A916-70D897D2C1DD.jpeg" alt="Premium Water proof PlayMat" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Premium Water proof PlayMat">Premium Water proof PlayMat</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹850</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/DDD3C5B1-EFD6-45D5-916B-01B3E191D090.jpeg" alt="Double side Water proof PlayMat" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Double side Water proof PlayMat">Double side Water proof PlayMat</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹980</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/C0B0D72A-0F8B-41D8-B476-28D98BE25E3E.jpeg" alt="2 in 1 Round Potty Chair" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="2 in 1 Round Potty Chair">2 in 1 Round Potty Chair</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹820</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/F03A14CE-251A-4A41-9E47-3C11D2FED553_web.jpeg" alt="Toy Brush" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Toy Brush">Toy Brush</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹99</span>
+          </div>
+        </div>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="catalog-footer">
+      <div class="footer-left">
+        <span>🦕 Dino Baby World</span>
+        <span>•</span>
+        <span>Safe &amp; Loved Baby Essentials</span>
+      </div>
+      <div class="footer-center">To order, send screenshot / product name to WhatsApp</div>
+      <div class="footer-page">Page 5 of 9</div>
+    </footer>
+  </div>
+
+
+  <div class="catalog-page">
+    <!-- Header -->
+    <header class="catalog-header">
+      <div class="brand-left">
+        <img src="images/logo.png" alt="Dino Baby World Logo" class="brand-logo">
+        <div class="brand-text">
+          <div class="brand-title">Dino Baby World</div>
+          <div class="brand-subtitle">Curated Baby Essentials • Product Catalog</div>
+        </div>
+      </div>
+      <div class="header-contact">
+        <div class="wa-badge">
+          <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.07 7.38C8.91 7.38 8.65 7.44 8.43 7.68C8.21 7.92 7.6 8.49 7.6 9.66C7.6 10.82 8.45 11.95 8.57 12.11C8.69 12.27 10.23 14.64 12.6 15.65C14.57 16.49 14.97 16.33 15.4 16.29C15.83 16.25 16.79 15.72 16.99 15.16C17.19 14.6 17.19 14.12 17.13 14.02C17.07 13.92 16.91 13.86 16.67 13.74C16.43 13.62 15.24 13.04 15.02 12.96C14.8 12.88 14.64 12.84 14.48 13.08C14.32 13.32 13.86 13.86 13.72 14.02C13.58 14.18 13.44 14.2 13.2 14.08C12.96 13.96 11.95 13.63 10.75 12.56C9.82 11.73 9.19 10.7 9.07 10.46C8.95 10.22 9.06 10.09 9.18 9.97C9.29 9.86 9.43 9.68 9.55 9.54C9.67 9.4 9.71 9.3 9.79 9.14C9.87 8.98 9.83 8.84 9.77 8.72C9.71 8.6 9.25 7.47 9.07 7.38Z"/></svg>
+          <span>+91 9500368149</span>
+        </div>
+        <div class="insta-tag">Instagram: @dino_babyworld</div>
+      </div>
+    </header>
+
+    <!-- 3x3 Grid -->
+    <main class="grid-container">
+      
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/06BB9E96-962D-4968-A6B3-6E9FB393A590_web.jpeg" alt="Zoo Zoomers Toy" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Zoo Zoomers Toy">Zoo Zoomers Toy</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹180</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/236BB3E7-25C9-4243-AB37-6B7F014BAD7E_web.jpeg" alt="Baby Crab Camera Toy" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby Crab Camera Toy">Baby Crab Camera Toy</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹379</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/05E12068-6FAE-4E55-A901-187068A0E79A_web.jpeg" alt="Hold Cute Lion Toy" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Hold Cute Lion Toy">Hold Cute Lion Toy</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹380</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/AA5694D8-07CC-4665-9BC2-73D0E03EC623_web.jpeg" alt="Biggie Ball" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Biggie Ball">Biggie Ball</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹180</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/FF43E5C0-067C-4830-AADF-0DCECF5A7729_web.jpeg" alt="Jumping Jack Toy" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Jumping Jack Toy">Jumping Jack Toy</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹280</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/4AE094D8-54C6-49A3-A6E5-5DDF8C319F6B_web.jpeg" alt="Steel Sipper Bottle" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Steel Sipper Bottle">Steel Sipper Bottle</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹500</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/77AB189C-D80C-429C-AF48-7A6A4E195B9D_web.jpeg" alt="Hold cute Rabbit Toy" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Hold cute Rabbit Toy">Hold cute Rabbit Toy</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹280</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/A565AF91-7949-4BF8-A557-B41602D9717D_web.jpeg" alt="Baby Small Speaker" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby Small Speaker">Baby Small Speaker</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹250</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/0BAF1552-29B9-41C5-96B0-B0D8C25884E4_web.jpeg" alt="Hip Carrier Seat" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Hip Carrier Seat">Hip Carrier Seat</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹700</span>
+          </div>
+        </div>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="catalog-footer">
+      <div class="footer-left">
+        <span>🦕 Dino Baby World</span>
+        <span>•</span>
+        <span>Safe &amp; Loved Baby Essentials</span>
+      </div>
+      <div class="footer-center">To order, send screenshot / product name to WhatsApp</div>
+      <div class="footer-page">Page 6 of 9</div>
+    </footer>
+  </div>
+
+
+  <div class="catalog-page">
+    <!-- Header -->
+    <header class="catalog-header">
+      <div class="brand-left">
+        <img src="images/logo.png" alt="Dino Baby World Logo" class="brand-logo">
+        <div class="brand-text">
+          <div class="brand-title">Dino Baby World</div>
+          <div class="brand-subtitle">Curated Baby Essentials • Product Catalog</div>
+        </div>
+      </div>
+      <div class="header-contact">
+        <div class="wa-badge">
+          <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.07 7.38C8.91 7.38 8.65 7.44 8.43 7.68C8.21 7.92 7.6 8.49 7.6 9.66C7.6 10.82 8.45 11.95 8.57 12.11C8.69 12.27 10.23 14.64 12.6 15.65C14.57 16.49 14.97 16.33 15.4 16.29C15.83 16.25 16.79 15.72 16.99 15.16C17.19 14.6 17.19 14.12 17.13 14.02C17.07 13.92 16.91 13.86 16.67 13.74C16.43 13.62 15.24 13.04 15.02 12.96C14.8 12.88 14.64 12.84 14.48 13.08C14.32 13.32 13.86 13.86 13.72 14.02C13.58 14.18 13.44 14.2 13.2 14.08C12.96 13.96 11.95 13.63 10.75 12.56C9.82 11.73 9.19 10.7 9.07 10.46C8.95 10.22 9.06 10.09 9.18 9.97C9.29 9.86 9.43 9.68 9.55 9.54C9.67 9.4 9.71 9.3 9.79 9.14C9.87 8.98 9.83 8.84 9.77 8.72C9.71 8.6 9.25 7.47 9.07 7.38Z"/></svg>
+          <span>+91 9500368149</span>
+        </div>
+        <div class="insta-tag">Instagram: @dino_babyworld</div>
+      </div>
+    </header>
+
+    <!-- 3x3 Grid -->
+    <main class="grid-container">
+      
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/D470E851-F5EB-4CDD-B4EC-8688C33BABC5_web.jpeg" alt="Crinkling Fabric Book" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Crinkling Fabric Book">Crinkling Fabric Book</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹680</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/B03DF6C5-6EE0-46EE-A231-3565CD6C50D6_web.jpeg" alt="Baby Hand beat drum" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby Hand beat drum">Baby Hand beat drum</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹775</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/E976555B-25B5-477E-8FE3-34C61FB7A4C0_web.jpeg" alt="Electric Wearable Breast" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Electric Wearable Breast">Electric Wearable Breast</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹3300</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/7DC66721-D018-422B-84A4-965A9F2F5217_web.jpeg" alt="Cloth Activity Book" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Cloth Activity Book">Cloth Activity Book</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹680</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/9B3C20DE-6A29-45AB-9593-5339A951C795_web.jpeg" alt="Nail Cutter" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Nail Cutter">Nail Cutter</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹85</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/6E7FB3FA-056F-4508-AC22-60E481F5721E_web.jpeg" alt="Musline Langod" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Musline Langod">Musline Langod</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹85</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/5B96D7BF-B445-458B-85B6-6230E8BF4458_web.jpeg" alt="Jabla Musline Button" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Jabla Musline Button">Jabla Musline Button</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹95</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/BA58D835-8D00-48EA-9B55-1E199314B16B_web.jpeg" alt="Jabla Musline knot" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Jabla Musline knot">Jabla Musline knot</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹85</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/74D24377-84E1-4128-9A5B-135E6333A6B3_web.jpeg" alt="Musline Hoodie towel" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Musline Hoodie towel">Musline Hoodie towel</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹260</span>
+          </div>
+        </div>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="catalog-footer">
+      <div class="footer-left">
+        <span>🦕 Dino Baby World</span>
+        <span>•</span>
+        <span>Safe &amp; Loved Baby Essentials</span>
+      </div>
+      <div class="footer-center">To order, send screenshot / product name to WhatsApp</div>
+      <div class="footer-page">Page 7 of 9</div>
+    </footer>
+  </div>
+
+
+  <div class="catalog-page">
+    <!-- Header -->
+    <header class="catalog-header">
+      <div class="brand-left">
+        <img src="images/logo.png" alt="Dino Baby World Logo" class="brand-logo">
+        <div class="brand-text">
+          <div class="brand-title">Dino Baby World</div>
+          <div class="brand-subtitle">Curated Baby Essentials • Product Catalog</div>
+        </div>
+      </div>
+      <div class="header-contact">
+        <div class="wa-badge">
+          <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.07 7.38C8.91 7.38 8.65 7.44 8.43 7.68C8.21 7.92 7.6 8.49 7.6 9.66C7.6 10.82 8.45 11.95 8.57 12.11C8.69 12.27 10.23 14.64 12.6 15.65C14.57 16.49 14.97 16.33 15.4 16.29C15.83 16.25 16.79 15.72 16.99 15.16C17.19 14.6 17.19 14.12 17.13 14.02C17.07 13.92 16.91 13.86 16.67 13.74C16.43 13.62 15.24 13.04 15.02 12.96C14.8 12.88 14.64 12.84 14.48 13.08C14.32 13.32 13.86 13.86 13.72 14.02C13.58 14.18 13.44 14.2 13.2 14.08C12.96 13.96 11.95 13.63 10.75 12.56C9.82 11.73 9.19 10.7 9.07 10.46C8.95 10.22 9.06 10.09 9.18 9.97C9.29 9.86 9.43 9.68 9.55 9.54C9.67 9.4 9.71 9.3 9.79 9.14C9.87 8.98 9.83 8.84 9.77 8.72C9.71 8.6 9.25 7.47 9.07 7.38Z"/></svg>
+          <span>+91 9500368149</span>
+        </div>
+        <div class="insta-tag">Instagram: @dino_babyworld</div>
+      </div>
+    </header>
+
+    <!-- 3x3 Grid -->
+    <main class="grid-container">
+      
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/71DCFF86-B2A0-444F-87E8-A3E2D32CD28F_web.jpeg" alt="Musline towel" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Musline towel">Musline towel</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹210</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/1046B71B-4E90-4344-8B46-019FB9E7B09E_web.jpeg" alt="Cartoon Panty" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Cartoon Panty">Cartoon Panty</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹200</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/04F29825-6EBD-4C95-9115-4389B3BBAA9B_web.jpeg" alt="Training Panties" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Training Panties">Training Panties</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹160</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/9FD23186-3157-4FCC-85EF-AC9E2582113F_web.jpeg" alt="Mother's Baby Carrier Bag" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Mother's Baby Carrier Bag">Mother's Baby Carrier Bag</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹756</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/8D6DA446-8A8B-49DE-ACE3-89BCFCE60CB7_web.jpeg" alt="Baby Training panties" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby Training panties">Baby Training panties</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹230</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/5F120D35-9C0A-4C2F-AB19-1ED08818F67D_web.jpeg" alt="Baby Foot Stamp" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby Foot Stamp">Baby Foot Stamp</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹112</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/28BD6800-2139-48B1-B349-598E6C226045_web.jpeg" alt="Baby Safety Bath" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby Safety Bath">Baby Safety Bath</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹430</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/5CAF6CA8-DC2B-481B-A828-41120955A190_web.jpeg" alt="Baby Sleeping Bed" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby Sleeping Bed">Baby Sleeping Bed</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹740</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/363E4C48-1FE4-49C2-8646-F2D4A57B274D_web.jpeg" alt="Baby Lotus bed" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Baby Lotus bed">Baby Lotus bed</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹1200</span>
+          </div>
+        </div>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="catalog-footer">
+      <div class="footer-left">
+        <span>🦕 Dino Baby World</span>
+        <span>•</span>
+        <span>Safe &amp; Loved Baby Essentials</span>
+      </div>
+      <div class="footer-center">To order, send screenshot / product name to WhatsApp</div>
+      <div class="footer-page">Page 8 of 9</div>
+    </footer>
+  </div>
+
+
+  <div class="catalog-page">
+    <!-- Header -->
+    <header class="catalog-header">
+      <div class="brand-left">
+        <img src="images/logo.png" alt="Dino Baby World Logo" class="brand-logo">
+        <div class="brand-text">
+          <div class="brand-title">Dino Baby World</div>
+          <div class="brand-subtitle">Curated Baby Essentials • Product Catalog</div>
+        </div>
+      </div>
+      <div class="header-contact">
+        <div class="wa-badge">
+          <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.07 7.38C8.91 7.38 8.65 7.44 8.43 7.68C8.21 7.92 7.6 8.49 7.6 9.66C7.6 10.82 8.45 11.95 8.57 12.11C8.69 12.27 10.23 14.64 12.6 15.65C14.57 16.49 14.97 16.33 15.4 16.29C15.83 16.25 16.79 15.72 16.99 15.16C17.19 14.6 17.19 14.12 17.13 14.02C17.07 13.92 16.91 13.86 16.67 13.74C16.43 13.62 15.24 13.04 15.02 12.96C14.8 12.88 14.64 12.84 14.48 13.08C14.32 13.32 13.86 13.86 13.72 14.02C13.58 14.18 13.44 14.2 13.2 14.08C12.96 13.96 11.95 13.63 10.75 12.56C9.82 11.73 9.19 10.7 9.07 10.46C8.95 10.22 9.06 10.09 9.18 9.97C9.29 9.86 9.43 9.68 9.55 9.54C9.67 9.4 9.71 9.3 9.79 9.14C9.87 8.98 9.83 8.84 9.77 8.72C9.71 8.6 9.25 7.47 9.07 7.38Z"/></svg>
+          <span>+91 9500368149</span>
+        </div>
+        <div class="insta-tag">Instagram: @dino_babyworld</div>
+      </div>
+    </header>
+
+    <!-- 3x3 Grid -->
+    <main class="grid-container">
+      
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/9F1411B8-162A-463B-91E2-FE781CE02610_web.jpeg" alt="Feeding Pillow" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Feeding Pillow">Feeding Pillow</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹830</span>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="card-top">
+            <div class="image-wrapper">
+              <img src="images/catalog_thumbs/68573D59-1689-43BC-A4C8-D592E44FA0C8_web.jpeg" alt="Kids Bathing Sofa" class="product-img" loading="eager">
+            </div>
+            <div class="product-name" title="Kids Bathing Sofa">Kids Bathing Sofa</div>
+          </div>
+          <div class="price-container">
+            <span class="price-label">Price:</span>
+            <span class="price-value">₹589</span>
+          </div>
+        </div>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="catalog-footer">
+      <div class="footer-left">
+        <span>🦕 Dino Baby World</span>
+        <span>•</span>
+        <span>Safe &amp; Loved Baby Essentials</span>
+      </div>
+      <div class="footer-center">To order, send screenshot / product name to WhatsApp</div>
+      <div class="footer-page">Page 9 of 9</div>
+    </footer>
+  </div>
+
+</body>
+</html>
